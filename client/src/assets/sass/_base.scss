@@ -6,19 +6,24 @@
     user-select: none;
 }
 
-ul {
-    list-style-type: none;
+body,
+input {
+    font-family: "Poppins", sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: unset;
+// ul {
+//     list-style-type: none;
+// }
 
-    &:hover{
-        color: $main-color;
-    }
-}
+// a {
+//     text-decoration: none;
+//     color: unset;
 
-img {
-    max-width: 100%;
-}
+//     &:hover{
+//         color: $main-color;
+//     }
+// }
+
+// img {
+//     max-width: 100%;
+// }
