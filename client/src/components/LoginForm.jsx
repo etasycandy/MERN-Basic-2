@@ -10,13 +10,32 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 
-import React from "react";
+import React, { useState } from "react";
+import { loginUser } from "../redux/apiRequest";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      username: username,
+      password: password,
+    };
+
+    loginUser(newUser, dispatch, navigate);
+  };
+
   return (
     <form
       method="POST"
-      action="#"
+      onSubmit={handleLogin}
       className="flex items-center justify-center flex-col overflow-hidden px-20 login-form"
     >
       <h2 className="text-4xl text-gray-600 m-3 font-bold">Sign in</h2>
@@ -32,6 +51,7 @@ const LoginForm = () => {
           type="text"
           placeholder="Username"
           className="bg-transparent outline-none border-none leading-4 font-semibold text-lg text-[#333] placeholder:text-#aaa placeholder:font-medium"
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div className="max-w-sm w-full bg-[#f0f0f0] my-3 h-[55px] rounded-full grid px-4 relative input-field">
@@ -46,6 +66,7 @@ const LoginForm = () => {
           type="password"
           placeholder="Password"
           className="bg-transparent outline-none border-none leading-4 font-semibold text-lg text-[#333] placeholder:text-#aaa placeholder:font-medium"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <input
