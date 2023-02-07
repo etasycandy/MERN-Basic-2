@@ -10,6 +10,7 @@ let path = require("path");
 let cookieParser = require("cookie-parser");
 let logger = require("morgan");
 let mongoose = require("mongoose");
+const cors = require("cors");
 
 let indexRouter = require("./src/routes/index");
 let usersRouter = require("./src/routes/users");
@@ -38,6 +39,17 @@ const connectDB = async () => {
 };
 
 connectDB();
+
+/**
+ * CORS
+ */
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set("views", path.join(__dirname, "src/views"));
